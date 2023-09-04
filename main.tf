@@ -1,0 +1,26 @@
+terraform {
+    required_providers {
+        aws = {
+            source  = "hashicorp/aws"
+            version = "~> 4.16"
+        }
+    }
+
+    required_version = ">= 1.2.0"
+}
+
+provider "aws" {
+    profile = "default"
+    region  = "us-east-1"
+}
+
+resource "aws_instance" "terraform_instance" {
+    ami           = "ami-053b0d53c279acc90"
+    instance_type = "t2.micro"
+    key_name      = "us-east-1-personal"
+
+    tags = {
+        Name = "TerraformCreatedInstance"
+    }
+}
+
